@@ -4,6 +4,7 @@ click==6.7
 decorator==4.1.2
 first==2.0.1
 Flask==0.12.2
+httplib2==0.10.3
 idna==2.6
 IMDbPY==6.2
 itsdangerous==0.24
@@ -12,6 +13,7 @@ lxml==4.1.1
 MarkupSafe==1.0
 pbr==3.1.1
 pip-tools==1.11.0
+pytvdbapi==0.5.0
 requests==2.18.4
 six==1.11.0
 SQLAlchemy==1.1.15
