@@ -15,6 +15,9 @@ def root():
     return 'Thanks for using conclamantes!'
 
 
+@app.route('/film/')
+def film_hint():
+    return 'Use: /film/[imdbid]'
 
 @app.route('/film/<imdbid>')
 def show_imdbdata(imdbid):
