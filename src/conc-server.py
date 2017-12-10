@@ -3,16 +3,24 @@ from flask import request
 
 import configparser
 
-
 from imdb import IMDb
 from pytvdbapi import api as tvdb
 
 config = configparser.ConfigParser()
-config.read("config.ini")
-tvdb_apikey = config['TVDB']['api_key']
+config.read("src/config.ini")
+
+try:
+    tvdb_apikey = config['TVDB']['api_key']
+except:
+    config.read("src/config.ini")
+    try:
+        tvdb_apikey = config['TVDB']['api_key']
+    except:
+        print("Config file not found")
+        quit()
 
 imdb_access = IMDb()
-tvdb_access = tvdb(tvdb_apikey)
+tvdb_access = tvdb.TVDB(tvdb_apikey)
 
 app = Flask(__name__)
 
@@ -21,6 +29,20 @@ try:
     import uwsgi
 except ImportError:
     debugmode = True
+
+
+# shutdown server
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+@app.route('/shutdown', methods=['GET'])
+def shutdown():
+    if app.debug:
+        shutdown_server()
+        return 'Server shutting down...'
+    return 'Cheeky!'
 
 @app.route('/')
 def root():
@@ -74,19 +96,5 @@ def searchperson(searchstring):
         responsedata = responsedata + item.SeriesName + ':' + item.id + '\n'
     return responsedata
 
-# shutdown server
-def shutdown_server():
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func is None:
-        raise RuntimeError('Not running with the Werkzeug Server')
-    func()
-
-@app.route('/shutdown', methods=['GET'])
-def shutdown():
-    if app.debug:
-        shutdown_server()
-        return 'Server shutting down...'
-    
-    return 'Cheeky!'
 
 
