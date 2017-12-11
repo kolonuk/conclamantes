@@ -6,18 +6,14 @@ import configparser
 from imdb import IMDb
 from pytvdbapi import api as tvdb
 
+import os
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
 config = configparser.ConfigParser()
 config.read("src/config.ini")
 
-try:
-    tvdb_apikey = config['TVDB']['api_key']
-except:
-    config.read("src/config.ini")
-    try:
-        tvdb_apikey = config['TVDB']['api_key']
-    except:
-        print("Config file not found")
-        quit()
+tvdb_apikey = config['TVDB']['tvdb_api']
 
 imdb_access = IMDb()
 tvdb_access = tvdb.TVDB(tvdb_apikey)
@@ -89,8 +85,8 @@ def searchperson(searchstring):
     return responsedata
 
 @app.route('/search/series/<searchstring>')
-def searchperson(searchstring):
-    s_result = tvdb_access.search(searchstring)
+def searchseries(searchstring):
+    s_result = tvdb_access.search(searchstring,'en')
     responsedata = ""
     for item in s_result:
         responsedata = responsedata + item.SeriesName + ':' + item.id + '\n'
