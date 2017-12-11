@@ -89,7 +89,7 @@ def searchseries(searchstring):
     s_result = tvdb_access.search(searchstring,'en')
     responsedata = ""
     for item in s_result:
-        responsedata = responsedata + item.SeriesName + ':' + item.id + '\n'
+        responsedata = responsedata + item.SeriesName + ':' + str(item.id) + '\n'
     return responsedata
 
 
