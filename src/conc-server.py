@@ -93,4 +93,8 @@ def searchseries(searchstring):
     return responsedata
 
 
-
+if __name__ == "__main__":
+    import os
+    if 'WINGDB_ACTIVE' in os.environ:
+        app.debug = False
+    app.run()
