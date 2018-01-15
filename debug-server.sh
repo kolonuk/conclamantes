@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # standalone dev server
 . venv/bin/activate
 

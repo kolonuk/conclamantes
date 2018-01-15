@@ -1,7 +1,15 @@
 from flask import Flask
-from flask import request
+#from flask import request
 
 app = Flask(__name__)
+
+from concinit import *
+app.register_blueprint(concinit)
+
+from api.concapi import *
+from web.concweb import *
+app.register_blueprint(concapi)
+app.register_blueprint(concweb)
 
 debugmode = False
 try:
@@ -9,8 +17,6 @@ try:
 except ImportError:
     debugmode = True
 
-from api import *
-from web import *
 
 if __name__ == "__main__":
 	# enable WINGDB editor debugging
