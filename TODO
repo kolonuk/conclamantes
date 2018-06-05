@@ -1,0 +1,73 @@
+Conclamantes
+
+TODO
+
+To get going:
+
+Register domain name
+Get icon/logo
+Get website up and running
+  * brief explanation of conclamantes
+    * what it aims to be
+    * what it's made of
+    * activity - just me working on it and not really expecting any help
+  * how to install (manual at present)
+    * hopefully how to install in future
+      * docker
+      * standalone
+  * bug/feature tracker (github)
+
+
+Development
+- move all code into separate modules
+- config parameters and setting global-flags (no TVDB, for example): need to find best way to achieve this, is there a ptyhon standard for loading a config file?
+- get IMDB searching working, with error checking
+- get TVDB searching working, with error checking
+- get OMDB searching working, with error checking (LOW)
+- get TVMaze searching working, with error checking (LOW)
+- get IMDB TV searching working, with error checking (VERY LOW)
+- get SubDB searching working, with error checking
+- get opensubtitles searching working, with error checking
+- define people table
+  - name
+  - aliases
+  - DOB
+  - ID
+  - add birthday to calendar
+- define actors table
+  - film id
+  - people ID
+- define film table
+  - id
+  - STORE original file name
+  - film title
+  - aliases
+  - run time
+  - create add to table api call
+- define series table
+  - STORE original file name
+  - create add to table api call
+
+- create queue processing server
+  - threading
+- create queue processing table
+
+- add file location to media tables
+- add file media refresh (quality, resolution, size, codec, subtitles, languages etc.)
+  - python mediainfo
+
+- add subtitle details to media tables
+  - use global settings
+  - has subtitles
+  - auto-import if no subtitles
+  - preferred language
+  - preferred source
+  - preferred type
+  - preferred text
+  - ignore text
+- add subtitle location save/search (film location, custom location, merge with film)
+  - manual import from location (detect film and copy to location)
+  - auto import from location
+
+
+
