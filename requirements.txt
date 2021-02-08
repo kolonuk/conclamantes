@@ -4,7 +4,7 @@ click==6.7
 decorator==4.1.2
 first==2.0.1
 Flask==0.12.2
-httplib2==0.10.3
+httplib2==0.19.0
 idna==2.6
 IMDbPY==6.2
 itsdangerous==0.24
